@@ -1,28 +1,34 @@
-package graduation.work.uniInu.domain;
+package graduation.work.uniInu.entity;
 
 import graduation.work.uniInu.global.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@Getter
 @Builder
 @Entity
-@Table(name = "time_table")
 @NoArgsConstructor
+@Table(name = "User")
 @AllArgsConstructor
-public class Course extends BaseEntity {
+public class User extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
+    private String name;
+
+    @Column(name = "student_number")
+    private String studentNumber;
+
+    private String password;
+
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
-
-    @Column(name = "class_name")
-    private String className;
 
 }
