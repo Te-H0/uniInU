@@ -1,14 +1,17 @@
 package graduation.work.uniInu.controller;
 
+import com.univcert.api.UnivCert;
 import graduation.work.uniInu.dto.ReqDto;
 import graduation.work.uniInu.global.ApiResponse;
 import graduation.work.uniInu.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.util.Map;
+
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/users")
@@ -25,5 +28,22 @@ public class UserController {
     public ApiResponse<Long> userLogin(@RequestBody ReqDto.UserLoginDto userLoginDto) {
 
         return new ApiResponse<>(userService.login(userLoginDto));
+    }
+
+    @GetMapping("/verify")
+    public boolean sendCode(@RequestParam String email) throws IOException {
+        return userService.sendUserCertifyCode(email);
+    }
+
+    @GetMapping("/verify-code")
+    public boolean verifyCode(@RequestParam int code, @RequestParam String email) throws IOException {
+        return userService.userCertify(code, email);
+    }
+
+    @GetMapping("/reset")
+    public Boolean resetVerify() throws IOException {
+        Map<String, Object> response = UnivCert.clear("982dedbe-9220-4370-b4be-f1273fb78c46", "xogh8755@inu.ac.kr");
+        log.info("response=>{}", response);
+        return (Boolean) response.get("success");
     }
 }
