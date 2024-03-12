@@ -18,7 +18,7 @@ public class User extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     private String name;
 
@@ -26,9 +26,4 @@ public class User extends BaseEntity {
     private String studentNumber;
 
     private String password;
-
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
 }

@@ -25,11 +25,12 @@ public class CourseController {
     }
 
     @PostMapping
-    public void uploadTimeTable(@RequestParam Long userId, @RequestBody ReqDto.RegisterCourseDto registerCourseDto) {
+    public ApiResponse<Object> uploadTimeTable(@RequestParam Long userId, @RequestBody ReqDto.RegisterCourseDto registerCourseDto) {
         log.info("userId=> {}", userId);
         log.info("course=>{}", registerCourseDto.toString());
         courseService.registerCourse(userId, registerCourseDto);
 
+        return new ApiResponse<>(200, "수업 등록 성공!");
     }
 }
 
