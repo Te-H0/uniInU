@@ -22,7 +22,7 @@ public class ApiResponse<T> {
 
     public ApiResponse(T data) {
         this.code = 200;
-        this.message = "요청에 성공하였습니다";
+        this.message = "요청에 성공하였습니다 :]";
         this.data = data;
     }
 }
