@@ -14,8 +14,7 @@ public class TestController {
 
     @GetMapping("/test")
     public String testApi() {
-        return "yes~";
+        return "YES~";
     }
-
 }
 
