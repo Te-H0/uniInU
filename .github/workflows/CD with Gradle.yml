@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '17'
-          distribution: 'termuin'
+          distribution: 'adopt'
           
       - name: Make application.yml
         run: |
