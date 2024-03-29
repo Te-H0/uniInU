@@ -25,6 +25,7 @@ public class Course extends BaseEntity {
     private User user;
 
     @Column(name = "day")
+    @Enumerated(value = EnumType.STRING)
     private Weekday day;
 
     @Column(name = "course_name")

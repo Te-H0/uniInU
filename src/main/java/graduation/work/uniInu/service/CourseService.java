@@ -27,7 +27,7 @@ public class CourseService {
         Course course = Course.builder()
                 .user(user)
                 .courseName(registerCourseDto.getCourseName())
-                .day(Weekday.valueOf(registerCourseDto.getDay()))
+                .day(Weekday.formValue(registerCourseDto.getDay()))
                 .starTime(registerCourseDto.getStarTime())
                 .endTime(registerCourseDto.getEndTime())
                 .build();
@@ -44,7 +44,7 @@ public class CourseService {
             CoursesResponseDto coursesResponse = CoursesResponseDto.builder()
                     .id(course.getId())
                     .courseName(course.getCourseName())
-                    .day(course.getDay().toString())
+                    .day(course.getDay().getValue())
                     .starTime(course.getStarTime())
                     .endTime(course.getEndTime())
                     .build();
