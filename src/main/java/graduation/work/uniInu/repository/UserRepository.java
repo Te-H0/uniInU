@@ -1,10 +1,12 @@
 package graduation.work.uniInu.repository;
 
 import graduation.work.uniInu.entity.User;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
-
 public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findUserByStudentNumber(String studentNumber);
+
+  Optional<User> findUserByStudentNumber(String studentNumber);
+
+  Boolean existsByStudentNumber(String studentNumber);
 }

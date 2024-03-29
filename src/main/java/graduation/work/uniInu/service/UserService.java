@@ -30,14 +30,19 @@ public class UserService {
         return (boolean) response.get("success");
     }
 
-    public void join(ReqDto.UserSignUpDto userSignUpDto) {
-        User joinUser = User.builder()
-                .name(userSignUpDto.getName())
-                .password(passwordEncoder.encode(userSignUpDto.getPassword()))
-                .studentNumber(userSignUpDto.getStudentNumber())
-                .build();
+    public boolean join(ReqDto.UserSignUpDto userSignUpDto) {
+        if (userRepository.existsByStudentNumber(userSignUpDto.getStudentNumber())) {
+            return false;
+        } else {
+            User joinUser = User.builder()
+                    .name(userSignUpDto.getName())
+                    .password(passwordEncoder.encode(userSignUpDto.getPassword()))
+                    .studentNumber(userSignUpDto.getStudentNumber())
+                    .build();
 
-        userRepository.save(joinUser);
+            userRepository.save(joinUser);
+            return true;
+        }
     }
 
     public long login(ReqDto.UserLoginDto userLoginDto) {
