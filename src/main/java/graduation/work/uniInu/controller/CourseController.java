@@ -32,5 +32,13 @@ public class CourseController {
 
         return new ApiResponse<>(200, "수업 등록 성공!");
     }
+
+    @DeleteMapping
+    public ApiResponse<Object> deleteTimeTable(@RequestParam Long userId, @RequestParam Long courseId) {
+
+        courseService.deleteCourse(userId, courseId);
+
+        return new ApiResponse<>(200, "수업 삭제 성공!");
+    }
 }
 

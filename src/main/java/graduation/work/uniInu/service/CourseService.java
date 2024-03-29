@@ -53,4 +53,11 @@ public class CourseService {
         return response;
     }
 
+    public void deleteCourse(Long userId, Long courseId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("잘못된 유저입니다."));
+        Course course = courseRepository.findCourseByIdAndUser(courseId, user).orElseThrow(() -> new RuntimeException("없는 수업입니다."));
+        courseRepository.delete(course);
+
+    }
+
 }
