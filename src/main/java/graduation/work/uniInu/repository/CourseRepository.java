@@ -10,6 +10,6 @@ import java.util.Optional;
 public interface CourseRepository extends JpaRepository<Course, Long> {
     List<Course> findAllByUserOrderByDay(User user);
 
-    Optional<Course> findCourseByIdAndUser(Long id, User user);
+    Optional<Course> findCourseById(Long id);
 
 }

@@ -34,9 +34,9 @@ public class CourseController {
     }
 
     @DeleteMapping
-    public ApiResponse<Object> deleteTimeTable(@RequestParam Long userId, @RequestParam Long courseId) {
+    public ApiResponse<Object> deleteTimeTable(@RequestParam Long courseId) {
 
-        courseService.deleteCourse(userId, courseId);
+        courseService.deleteCourse(courseId);
 
         return new ApiResponse<>(200, "수업 삭제 성공!");
     }
