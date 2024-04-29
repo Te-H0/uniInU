@@ -53,8 +53,9 @@ public class CourseService {
         return response;
     }
 
-    public void deleteCourse(Long courseId) {
-        Course course = courseRepository.findCourseById(courseId).orElseThrow(() -> new RuntimeException("없는 수업입니다."));
+    public void deleteCourse(Long userId, String courseName) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("수업 삭제 중 찾을 수 없는 유저입니다."));
+        Course course = courseRepository.findCourseByUserAndCourseName(user, courseName).orElseThrow(() -> new RuntimeException("없는 수업입니다."));
         courseRepository.delete(course);
 
     }
