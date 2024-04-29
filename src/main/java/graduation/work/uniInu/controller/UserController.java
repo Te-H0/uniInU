@@ -45,8 +45,8 @@ public class UserController {
     }
 
     @GetMapping("/reset")
-    public Boolean resetVerify() throws IOException {
-        Map<String, Object> response = UnivCert.clear("982dedbe-9220-4370-b4be-f1273fb78c46", "xogh8755@inu.ac.kr");
+    public Boolean resetVerify(@RequestParam String email) throws IOException {
+        Map<String, Object> response = UnivCert.clear("982dedbe-9220-4370-b4be-f1273fb78c46", email);
         log.info("response=>{}", response);
         return (Boolean) response.get("success");
     }
