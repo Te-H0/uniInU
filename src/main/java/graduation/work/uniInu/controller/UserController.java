@@ -23,7 +23,7 @@ public class UserController {
         boolean result = userService.join(userSignUpDto);
 
         if (result)
-            return new ApiResponse<>("회원 가입에 성공했습니다 !");
+            return new ApiResponse<>(200, "회원 가입에 성공했습니다!");
         else
             throw new RuntimeException("이미 가입된 회원입니다!");
     }
