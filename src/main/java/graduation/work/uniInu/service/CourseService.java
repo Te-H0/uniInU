@@ -24,6 +24,10 @@ public class CourseService {
     public void registerCourse(Long userId, ReqDto.RegisterCourseDto registerCourseDto) {
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("없는 유저입니다."));
 
+        if (courseRepository.existsCourseByCourseNameAndUserAndDay(registerCourseDto.getCourseName(), user, Weekday.formValue(registerCourseDto.getDay()))) {
+            throw new RuntimeException("이미 등록한 강의 입니다.");
+        }
+
         Course course = Course.builder()
                 .user(user)
                 .courseName(registerCourseDto.getCourseName())
